@@ -419,7 +419,6 @@ src_configure() {
 		--disable-maintainer-mode \
 		--disable-merge-ffmpeg \
 		--disable-opensles \
-		--disable-oss \
 		--disable-quicksync \
 		--disable-quicktime \
 		--disable-rpi-omxil \
