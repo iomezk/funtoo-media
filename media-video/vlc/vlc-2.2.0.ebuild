@@ -264,13 +264,6 @@ src_prepare() {
 		sed -i 's/ --started-from-file//' share/vlc.desktop.in || die
 	fi
 
-	# FL-2189: Disable FreeRDP module completely.
-	use rdp || sed \
-		-e "/^librdp_plugin_la/d" \
-		-e "/^.*librdp_plugin.la/d" \
-		-e "/^.*LTLIBrdp/d" \
-		-i "${S}/modules/access/Makefile.am" || die
-
 	epatch_user
 
 	eautoreconf
@@ -317,6 +310,7 @@ src_configure() {
 		--enable-vlc \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-dependency-tracking \
+		--disable-freerdp
 		--disable-optimizations \
 		--disable-update-check \
 		--enable-fast-install \
@@ -397,7 +391,6 @@ src_configure() {
 		$(use_enable projectm) \
 		$(use_enable pulseaudio pulse) \
 		${qt_flag} \
-		$(use_enable rdp freerdp) \
 		$(use_enable rtsp realrtsp) \
 		$(use_enable run-as-root) \
 		$(use_enable samba smbclient) \
