@@ -264,6 +264,13 @@ src_prepare() {
 		sed -i 's/ --started-from-file//' share/vlc.desktop.in || die
 	fi
 
+	# FL-2189: Disable FreeRDP module completely.
+	use rdp || sed \
+		-e "/^librdp_plugin_la/d" \
+		-e "/^.*librdp_plugin.la/d" \
+		-e "/^.*LTLIBrdp/d" \
+		-i "${S}/modules/access/Makefile.am" || die
+
 	epatch_user
 
 	eautoreconf
