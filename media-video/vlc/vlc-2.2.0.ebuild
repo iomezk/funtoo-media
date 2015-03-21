@@ -274,7 +274,7 @@ src_prepare() {
 	# Remove Werror flag(s)
 	local find_werror_files
 	find_werror_files=`find "${S}" -type f -exec grep -q '-Werror' {} \; -print`
-	sed -e "s;-Werror;;" i "${find_werror_files}" || die
+	sed -e "s;-Werror;;" -i "${find_werror_files}" || die
 
 	# If qtchooser is installed, it may break the build, because moc,rcc and uic binaries for wrong qt version may be used.
 	# Setting QT_SELECT environment variable will enforce correct binaries.
