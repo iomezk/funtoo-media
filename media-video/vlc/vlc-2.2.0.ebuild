@@ -259,6 +259,9 @@ src_prepare() {
 	# Fix up broken audio when skipping using a fixed reversed bisected commit.
 	epatch "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
 
+	# Support for <ffmpeg-2.5.
+	epatch "${FILESDIR}"/${PN}-2.2.x-ffmpeg-lower-then-2.5.patch
+
 	# Remove Werror flag(s)
 	sed -e "s;-Werror;;" \
 		-i "${S}/aclocal.m4" \
