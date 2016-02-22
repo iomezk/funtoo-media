@@ -79,6 +79,10 @@ src_prepare() {
 	sed -e "/^.*flashsupport.c .*/d" \
 		-i "${S}/setup/Linux/build.sh" \
 		-i "${S}/setup/Linux/oss/build/install.sh" || die
+
+	# fix "multiple definition of ..."
+	sed -e "s/extern inline/static inline/g" \
+		-i "${S}/kernel/OS/Linux/os_linux.h" || die
 }
 
 src_configure() {
